@@ -20,15 +20,13 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000').split(',');
 
 app.use(cors({
-  origin: (origin, cb) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      cb(null, true);
-    } else {
-      cb(new Error(`CORS: Origin ${origin} not allowed.`));
-    }
-  },
+  origin: [
+    'http://localhost:5173',
+    'https://scrapco-frontend.vercel.app',
+  ],
   credentials: true,
 }));
+
 
 // ── Body parsing ──────────────────────────────────────────────────────────────
 app.use(express.json());
